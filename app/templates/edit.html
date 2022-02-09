@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<h1>Form</h1>
+    <form action="/edit-book/{{id}}/" method="POST">
+        {%csrf_token%}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value={{name}}><br><br>
+
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" value={{author}}><br><br>
+
+        <label for="isbn">Isbn:</label><br>
+        <input type="text" id="isbn" name="isbn" value={{isbn}}><br><br>
+
+        <label for="pages">Pages:</label><br>
+        <input type="text" id="pages" name="pages" value={{pages}}><br><br>
+
+        <input type="submit" value="Submit">
+      </form>
+<br>
+<br>
+
+{% endblock %}

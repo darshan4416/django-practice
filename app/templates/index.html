@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Form</h1>
+    <form action="/add-books/" method="POST">
+        {%csrf_token%}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" ><br><br>
+
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" ><br><br>
+
+        <label for="isbn">Isbn:</label><br>
+        <input type="text" id="isbn" name="isbn"><br><br>
+
+        <label for="pages">Pages:</label><br>
+        <input type="text" id="pages" name="pages"><br><br>
+
+        <input type="submit" value="Submit">
+      </form>
+
+<br>
+<br>
+<h3>Name | Author | ISBN | PAGES | Action</h3>
+{% for book in books%}
+{{book.name}}  |
+{{book.author}}  |
+{{book.isbn}}  |
+{{book.pages}}  |
+<a href="edit-book/{{book.id}}">✏️</a>
+<a href="delete-book/{{book.id}}">🗑</a>
+<br>
+{% endfor %}
+
+{% endblock %}
+
+
