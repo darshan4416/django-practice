@@ -1,15 +1,20 @@
 from django.shortcuts import redirect, render, HttpResponse
+from django.core.paginator import Paginator
 from .models import Book
 
 
 def get_books(request):
-
     books = Book.objects.all()
-    context = {
-        'books':books
-    }
-    return render(request ,'index.html',context)
+    paginator = Paginator(books,2)
 
+    page_number = request.GET.get('page')
+    print(request.GET)
+    page_obj = paginator.get_page(page_number)
+
+    context = {'page_obj':page_obj}
+
+    return render(request, 'index.html', context)
+    
 def add_books(request):
     if request.method == 'POST':
         name = request.POST.get('name')

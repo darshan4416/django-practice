@@ -32,6 +32,23 @@
 <br>
 {% endfor %}
 
-{% endblock %}
 
+{% for book in page_obj.object_list %}
+          {# note that the list of posts are in the page_obj.object_list not page_obj #}
+            <h1>{{book.name}}</h1>
+            <small>{{book.author}}</small>
+            <hr/>
+{% endfor %}
+    </div>
+    <center>
+        {%if page_obj.has_previous %} 
+            <a href="?page={{page_obj.previous_page_number}}"><</a> 
+        {% endif %}
+        <span>{{page_obj.number}}</span> 
+        
+        {%if page_obj.has_next %} 
+            <a href="?page={{page_obj.next_page_number}}">></a>
+        {% endif %}
+    <center/>
+{% endblock %}
 
